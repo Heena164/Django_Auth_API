@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -136,6 +137,17 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
  
 AUTH_USER_MODEL = 'account.User'
+
+#Email Configuration
+EMAIL_BACKEND = "django.core.mail.backends.smtp import EmailBackend"
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+#TO ACCESS ENV VARIALES
+EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS')
+EMAIL_USE_TLS = True
+
+
 #JWT Settings
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=20),
@@ -154,6 +166,8 @@ SIMPLE_JWT = {
     "JTI_CLAIM": "jti",
 
 }
+
+PASSWORD_RESET_TIMEOUT = 900   #900 SEC = 15 MIN
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",

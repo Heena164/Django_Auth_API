@@ -6,7 +6,7 @@ import dotenv
 
 
 def main():
-    dotenv.read_dotenv()
+    dotenv.read_dotenv(override=True)
     """Run administrative tasks."""
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'djangoauthapi.settings')
     try:
